@@ -2,7 +2,7 @@
 
 #Function to Download and extract current version
 download_ver () { 
-	wget -q https://github.com/PhantomBot/PhantomBot/releases/download/v$version/PhantomBot-$version.zip
+	wget -q --show-progress https://github.com/PhantomBot/PhantomBot/releases/download/v$version/PhantomBot-$version.zip
 	unzip -o PhantomBot-$version.zip -d /data/
 	rm -f PhantomBot-$version.zip
 }
