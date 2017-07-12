@@ -1,6 +1,4 @@
-FROM java:8
-
-MAINTAINER Bart1ebee
+FROM openjdk:8
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
   unzip \
