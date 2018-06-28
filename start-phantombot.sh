@@ -27,23 +27,6 @@ then
   download_ver ${version}
   mv "${BASEDIR}/PhantomBot-${version}/" "${PHANTOMDIR}"
   echo ${version} > "${BOTVERSION_PATH}"
-  mv /botlogin.txt "${BOTLOGIN_PATH}"
-  sed -i "s/\%BOT_TWITCH_USERNAME\%/${BOT_TWITCH_USERNAME}/g;
-    s/\%BOT_OAUTH\%/${BOT_OAUTH}/g;
-    s/\%API_OAUTH\%/${API_OAUTH}/g
-    s/\%PANEL_USER\%/${PANEL_USER}/g
-    s/\%PANEL_PASSWORD\%/${PANEL_PASSWORD}/g
-    s/\%BOT_CHANNEL\%/${BOT_CHANNEL}/g;
-    s/\%BOT_OWNER\%/${BOT_OWNER}/g;
-    s/\%GAMEWISPAUTH\%/${GAMEWISPAUTH}/g;
-    s/\%GAMEWISPREFRESH\%/${GAMEWISPREFRESH}/g;
-    s/\%MYSQL_HOST\%/${MYSQL_HOST}/g;
-    s/\%MYSQL_PORT\%/${MYSQL_PORT}/g;
-    s/\%MYSQL_NAME\%/${MYSQL_NAME}/g;
-    s/\%MYSQL_USER\%/${MYSQL_USER}/g;
-    s/\%MSQL_PASS\%/${MYSQL_PASS}/g;
-    s/\%TIME_ZONE\%/${TIME_ZONE}/g;" \
-  "${BOTLOGIN_PATH}"
   chmod +x "${PHANTOMDIR}/launch-service.sh"
 # Check for identical version 
 else 
@@ -78,10 +61,32 @@ else
   fi
 fi
 
-# Exit condition to enable intial building
+# Exit condition to enable intial building, otherwise run substitution
 if [ -n "${1:-}" -a "${1:-}" == "dontrun" ]
 then
   exit
+fi
+
+# Initialize botlogin if not preexisting
+if [ !  -e "${BOTLOGIN_PATH}" ]
+then
+  mv /botlogin.txt "${BOTLOGIN_PATH}"
+  sed -i "s/\%BOT_TWITCH_USERNAME\%/${BOT_TWITCH_USERNAME}/g;
+    s/\%BOT_OAUTH\%/${BOT_OAUTH}/g;
+    s/\%API_OAUTH\%/${API_OAUTH}/g
+    s/\%PANEL_USER\%/${PANEL_USER}/g
+    s/\%PANEL_PASSWORD\%/${PANEL_PASSWORD}/g
+    s/\%BOT_CHANNEL\%/${BOT_CHANNEL}/g;
+    s/\%BOT_OWNER\%/${BOT_OWNER}/g;
+    s/\%GAMEWISPAUTH\%/${GAMEWISPAUTH}/g;
+    s/\%GAMEWISPREFRESH\%/${GAMEWISPREFRESH}/g;
+    s/\%MYSQL_HOST\%/${MYSQL_HOST}/g;
+    s/\%MYSQL_PORT\%/${MYSQL_PORT}/g;
+    s/\%MYSQL_NAME\%/${MYSQL_NAME}/g;
+    s/\%MYSQL_USER\%/${MYSQL_USER}/g;
+    s/\%MSQL_PASS\%/${MYSQL_PASS}/g;
+    s/\%TIME_ZONE\%/${TIME_ZONE}/g;" \
+  "${BOTLOGIN_PATH}"
 fi
 
 /data/PhantomBot/launch-service.sh
