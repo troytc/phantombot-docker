@@ -42,3 +42,4 @@ twitter_access_token=
 twitter_secret_token=
 logtimezone=%TIME_ZONE%
 devcommands=true
+betap=true
