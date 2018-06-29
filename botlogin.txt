@@ -40,5 +40,5 @@ twitter_consumer_key=
 twitter_consumer_secret=
 twitter_access_token=
 twitter_secret_token=
-logtimezone%TIME_ZONE%
+logtimezone=%TIME_ZONE%
 devcommands=true
