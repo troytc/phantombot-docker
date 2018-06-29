@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables to ease future substitution
-BASEDIR="/data/"
+BASEDIR="/data"
 BOTLOGIN_SUBPATH="config/botlogin.txt"
 DB_SUBPATH="config/phantombot.db"
 
