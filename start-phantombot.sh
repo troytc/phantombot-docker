@@ -11,12 +11,21 @@ BOTVERSION_PATH="${PHANTOMDIR}/version.txt"
 BOTLOGIN_PATH="${PHANTOMDIR}/${BOTLOGIN_SUBPATH}"
 DB_PATH="${PHANTOMDIR}/${DB_SUBPATH}"
 
+BETA_PANEL_URL="https://cloud.zelakto.tv/s/takfSbLXGtBtMKX/download"
+BETA_PANEL_DIR="${PHANTOMDIR}/web"
+
 
 # Download and extract current version
 download_ver () { 
   curl -LO https://github.com/PhantomBot/PhantomBot/releases/download/v${version}/PhantomBot-${version}.zip
   unzip -o PhantomBot-${version}.zip -d "${BASEDIR}"
   rm -f PhantomBot-${version}.zip
+}
+
+download_beta_panel () {
+  curl -Lo /tmp/beta-panel.zip "${BETA_PANEL_URL}"
+  unzip -o /tmp/beta-panel.zip -d "${BETA_PANEL_DIR}"
+  rm -f /tmp/beta-panel.zip
 }
 # Get Current version
 version=$(curl -s https://api.github.com/repos/PhantomBot/PhantomBot/releases/latest | grep 'tag_name' | cut -d\" -f4 | cut -c 2-)
@@ -28,6 +37,8 @@ then
   mv "${BASEDIR}/PhantomBot-${version}/" "${PHANTOMDIR}"
   echo ${version} > "${BOTVERSION_PATH}"
   chmod +x "${PHANTOMDIR}/launch-service.sh"
+  download_beta_panel
+
 # Check for identical version 
 else 
   # Read version file
