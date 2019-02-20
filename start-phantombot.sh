@@ -11,7 +11,7 @@ BOTVERSION_PATH="${PHANTOMDIR}/version.txt"
 BOTLOGIN_PATH="${PHANTOMDIR}/${BOTLOGIN_SUBPATH}"
 DB_PATH="${PHANTOMDIR}/${DB_SUBPATH}"
 
-BETA_PANEL_URL="https://cloud.zelakto.tv/s/takfSbLXGtBtMKX/download"
+BETA_PANEL_URL="https://cloud.zackery.tv/s/Cjydq5tzkeFFWmy/download"
 BETA_PANEL_DIR="${PHANTOMDIR}/web"
 
 
@@ -69,6 +69,8 @@ else
     mv "${BASEDIR}/PhantomBot-${version}/" "${PHANTOMDIR}"
     # Create new version file
     echo ${version} > "${BOTVERSION_PATH}"
+    echo Restoring beta-panel
+    download_beta_panel
   fi
 fi
 
@@ -100,4 +102,5 @@ then
   "${BOTLOGIN_PATH}"
 fi
 
+chmod +x /data/PhantomBot/launch-service.sh
 /data/PhantomBot/launch-service.sh
